@@ -1,0 +1,27 @@
+{
+  "name": "cleanblog",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000C\u0000l\u0000e\u0000a\u0000n\u0000B\u0000l\u0000o\u0000g\u0000\r\u0000 \u0000",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuhgnc/CleanBlog.git"
+  },
+  "author": "nuhgnc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nuhgnc/CleanBlog/issues"
+  },
+  "homepage": "https://github.com/nuhgnc/CleanBlog#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "prettier": "2.6.2"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

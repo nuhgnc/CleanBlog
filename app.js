@@ -24,10 +24,13 @@ app.use(express.json());
 //ROUTES
 app.get('/', async (req, res) => {
   const posts = await Post.find({})
-    console.log(posts)
     res.render('index', {posts});
-  
 });
+
+app.get('/post/:post_id', async (req,res) =>{
+  const foundedPost = await Post.findById(req.params.post_id)
+  res.render('post', {post: foundedPost})
+})
 
 app.get('/about', (req, res) => {
   res.render('about');

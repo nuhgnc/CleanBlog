@@ -1,57 +1,41 @@
-const express = require('express');
-const ejs = require('ejs');
-const mongoose = require('mongoose');
+const express = require('express'),
+    ejs = require('ejs'),
+    mongoose = require('mongoose'),
+    methodOverride = require('method-override')
 
-const Post = require('./models/Post')
+const postController = require('./controllers/postController'),
+    pageController = require('./controllers/pageControllers')
 
-const path = require('path');
+const path = require('path')
 
-const app = express();
+const app = express()
 
 // Databse connection
 mongoose
-  .connect('mongodb://localhost/cleanblog-test-db')
-  .then(() => console.log('database bağlantısı kuruldu'));
+    .connect('mongodb://localhost/cleanblog-test-db')
+    .then(() => console.log('database bağlantısı kuruldu'))
 
 //VİEW ENGİNE SETUP
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs')
 
 //MİDDLEWARE
-app.use(express.static(path.resolve(__dirname + '/public')));
-app.use(express.urlencoded({extended: true}))
-app.use(express.json());
+app.use(express.static(path.resolve(__dirname + '/public')))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(methodOverride('_method', { methods: ['GET', 'POST'] }))
 
 //ROUTES
-app.get('/', async (req, res) => {
-  const posts = await Post.find({})
-    res.render('index', {posts});
-});
+app.get('/', postController.getAllPost)
+app.get('/post/:post_id', postController.getPostPage)
+app.post('/add_post', postController.createPost)
+app.get('/add_post', pageController.addPostPage)
+app.get('/about', pageController.getAboutPage)
+app.get('/post', pageController.getPostPage)
+app.get('/post/edit/:post_id', postController.getEditPage)
+app.put('/post/edit/:post_id', postController.updatePost)
+app.delete('/post/delete/:post_id', postController.deletePost)
 
-app.get('/post/:post_id', async (req,res) =>{
-  const foundedPost = await Post.findById(req.params.post_id)
-  res.render('post', {post: foundedPost})
-})
-
-app.get('/about', (req, res) => {
-  res.render('about');
-});
-
-app.get('/add_post', (req, res) => {
-  res.render('add_post');
-});
-
-
-app.get('/post', (req, res) => {
-  res.render('post');
-});
-
-app.post('/add_post', async (req, res) => {
-  await Post.create(req.body)
-
-  res.redirect('/')
-});
-
-const port = 3000;
+const port = 3000
 app.listen(port, () => {
-  console.log(`sunucu ${port} ile çalışıyor`);
-});
+    console.log(`sunucu ${port} ile çalışıyor`)
+})

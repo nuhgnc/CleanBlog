@@ -1,4 +1,3 @@
-﻿# Clean Blog Projesi 5. Bölüm
 
 ## Clean Blog projemizin bu 5. bölümünde aşağıdaki işlemleri yapalım.
 

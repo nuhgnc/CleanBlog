@@ -12,7 +12,7 @@ const app = express()
 
 // Databse connection
 mongoose
-    .connect('mongodb+srv://nuhgnc:nuh163gnc@pcat-app.9enuy.mongodb.net/cleanBlog-heroku?retryWrites=true&w=majority')
+    .connect('mongodb+srv://<username>:<password>@pcat-app.9enuy.mongodb.net/cleanBlog-heroku?retryWrites=true&w=majority')
     .then(() => console.log('database bağlantısı kuruldu'))
     .catch(err => console.log(err + '\nDB BAĞLANTI HATASI'))
 
@@ -36,7 +36,7 @@ app.get('/post/edit/:post_id', postController.getEditPage)
 app.put('/post/edit/:post_id', postController.updatePost)
 app.delete('/post/delete/:post_id', postController.deletePost)
 
-const port = 3000
+const port = process.env.PORT || 3000
 app.listen(port, () => {
     console.log(`sunucu ${port} ile çalışıyor`)
 })

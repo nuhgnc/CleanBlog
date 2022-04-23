@@ -7,4 +7,4 @@
 - Heroku deploy'una hazır hale getirdim ve deploy ettik ✓
 
 
-![clean Blog Demo App ](https://cleanblog-nuh.herokuapp.com/)
+[clean Blog Demo App ](https://cleanblog-nuh.herokuapp.com/)

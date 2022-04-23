@@ -12,8 +12,9 @@ const app = express()
 
 // Databse connection
 mongoose
-    .connect('mongodb://localhost/cleanblog-test-db')
+    .connect('mongodb+srv://<usernam>:<password>@pcat-app.9enuy.mongodb.net/cleanBlog-heroku?retryWrites=true&w=majority')
     .then(() => console.log('database bağlantısı kuruldu'))
+    .catch(err => console.log(err + '\nDB BAĞLANTI HATASI'))
 
 //VİEW ENGİNE SETUP
 app.set('view engine', 'ejs')
